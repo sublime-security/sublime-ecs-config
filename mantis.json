@@ -1,0 +1,6 @@
+[
+    {
+      "name": "mantis",
+      "imageUri": "sublimesec/mantis:latest"
+    }
+  ]
