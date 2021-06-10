@@ -1,6 +1,6 @@
 [
     {
       "name": "bora",
-      "imageUri": "sublimesec/bora_lite:staging"
+      "imageUri": "sublimesec/bora-lite:staging"
     }
   ]
