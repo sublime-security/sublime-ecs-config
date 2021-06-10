@@ -1,6 +1,6 @@
 [
     {
       "name": "bora",
-      "imageUri": "sublimesec/bora_lite:latest"
+      "imageUri": "sublimesec/bora-lite:latest"
     }
   ]
