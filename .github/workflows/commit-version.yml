@@ -39,8 +39,8 @@ jobs:
       run: |
         echo "platform_backend_version: ${{ github.event.inputs.platform_backend_version }}"
         echo "platform_backend_release_type: ${{ github.event.inputs.platform_backend_release_type }}"
-        echo "platform_frontend_version: ${{ github.event.inputs.platform_backend_version }}"
-        echo "platform_frontend_release_type: ${{ github.event.inputs.platform_backend_release_type }}"
+        echo "platform_frontend_version: ${{ github.event.inputs.platform_frontend_version }}"
+        echo "platform_frontend_release_type: ${{ github.event.inputs.platform_frontend_release_type }}"
         echo "strelka_version: ${{ github.event.inputs.strelka_version }}"
         echo "strelka_release_type: ${{ github.event.inputs.strelka_release_type }}"
         echo "Branch: "${GITHUB_REF##*/}
