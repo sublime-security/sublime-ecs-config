@@ -1,0 +1,81 @@
+name: Release Based on Target Branch
+
+on:
+  workflow_dispatch:
+    inputs:
+      platform_backend_version:
+        description: 'Platform backend version to use, if releasing.'
+        required: false
+        default: ''
+      platform_backend_release_type:
+        description: 'Platform backend: Omit for standard releases, "bounce" for a restart, "rollback" to move backwards'
+        required: false
+        default: ''
+      platform_frontend_version:
+        description: 'Platform frontend version to use, if releasing.'
+        required: false
+        default: ''
+      platform_frontend_release_type:
+        description: 'Platform frontend: Omit for standard releases, "bounce" for a restart, "rollback" to move backwards'
+        required: false
+        default: ''
+      strelka_version:
+        description: 'Strelka version to use, if releasing.'
+        required: false
+        default: ''
+      strelka_release_type:
+        description: 'Strelka: Omit for standard releases, "bounce" for a restart, "rollback" to move backwards'
+        required: false
+        default: ''
+
+jobs:
+  update-files:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@v2
+
+    - name: Update files
+      run: |
+        echo "platform_backend_version: ${{ github.event.inputs.platform_backend_version }}"
+        echo "platform_backend_release_type: ${{ github.event.inputs.platform_backend_release_type }}"
+        echo "platform_frontend_version: ${{ github.event.inputs.platform_backend_version }}"
+        echo "platform_frontend_release_type: ${{ github.event.inputs.platform_backend_release_type }}"
+        echo "strelka_version: ${{ github.event.inputs.strelka_version }}"
+        echo "strelka_release_type: ${{ github.event.inputs.strelka_release_type }}"
+        echo "Branch: "${GITHUB_REF##*/}
+
+        git config --global user.name 'Sublime Release Bot'
+        git config --global user.email 'hello@sublimesecurity.com'
+
+        should_update=""
+        if [ "${{ github.event.inputs.platform_backend_version }}" != "" ]; then
+          .github/workflows/validate_and_update_service.sh "Platform BE" "bora-eu-west-1.json" "bora-lite" "14" "bora*.json mantis*.json" "${{ github.event.inputs.platform_backend_version }}" "${{ github.event.inputs.platform_backend_release_type }}"
+          should_update="true"
+        fi
+
+        if [ "${{ github.event.inputs.platform_frontend_version }}" != "" ]; then
+          .github/workflows/validate_and_update_service.sh "Platform FE" "dashboard-eu-west-1.json" "dashboard" "7" "dashboard*.json" "${{ github.event.inputs.platform_frontend_version }}" "${{ github.event.inputs.platform_frontend_release_type }}"
+          should_update="true"
+        fi
+
+        if [ "${{ github.event.inputs.strelka_version }}" != "" ]; then
+          .github/workflows/validate_and_update_service.sh "Strelka" "strelka-eu-west-1.json" "strelka-backend" "18" "strelka*.json" "${{ github.event.inputs.strelka_version }}" "${{ github.event.inputs.strelka_release_type }}"
+          should_update="true"
+        fi
+
+        if [ "$should_update" == "true" ]; then
+          commit_message=$(sed 's/.*/& +/' release-commit-msg.txt |  sed ':a;{N;s/\n/ /;ba}')
+          commit_message=${commit_message::-2}
+
+          allow_empty_option=""
+          if test -f "allow_empty"; then
+            allow_empty_option="--allow-empty"
+          fi
+
+          git commit $allow_empty_option -m "$commit_message"
+          git push origin ${GITHUB_REF##*/}
+        else
+          # Doesn't need to be a failure, but this was success means it actually did something.
+          echo "Neither target included an actionable update. Failing"
+        fi
