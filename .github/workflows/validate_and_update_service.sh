@@ -20,8 +20,8 @@ release_type=$7
 semver_regexp="\(0\|[1-9][0-9]*\)\.\(0\|[1-9][0-9]*\)\.\(0\|[1-9][0-9]*\)\(\-rc\.[0-9]*\)\?"
 
 
-# Find the current version, using a sample file file
-current_version=$(sed -n 's/.*'"$sample_service"':\('"$semver_regexp"'\)"/\1/p' $sample_file)
+# Find the current version, using a sample file (and allowing a suffix on the service name)
+current_version=$(sed -n 's/.*'"$sample_service"'\(.[A-Za-z]*\)\?:\('"$semver_regexp"'\)"/\2/p' $sample_file)
 
 current_version_count=$(grep -roh "$current_version" $version_files | wc -l | xargs) #xargs to strip space
 
