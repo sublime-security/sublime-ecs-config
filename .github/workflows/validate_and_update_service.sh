@@ -10,8 +10,6 @@ version_files=$5
 input_version=$6
 release_type=$7
 
-#TODO: Validate images exist
-
 ### Validate that existing state is consistent before proceeding
 
 # A simplified version of the regexp at https://semver.org/
@@ -21,7 +19,9 @@ semver_regexp="\(0\|[1-9][0-9]*\)\.\(0\|[1-9][0-9]*\)\.\(0\|[1-9][0-9]*\)\(\-rc\
 
 
 # Find the current version, using a sample file (and allowing a suffix on the service name)
-current_version=$(sed -n 's/.*'"$sample_service"'\(.[A-Za-z]*\)\?:\('"$semver_regexp"'\)"/\2/p' $sample_file)
+inspectSampleFileExp='.*'"$sample_service"'\(.[A-Za-z]*\)\?:\('"$semver_regexp"'\)"'
+repo_suffix=$(sed -n 's/'"$inspectSampleFileExp"'/\1/p' $sample_file)
+current_version=$(sed -n 's/'"$inspectSampleFileExp"'/\2/p' $sample_file)
 
 current_version_count=$(grep -roh "$current_version" $version_files | wc -l | xargs) #xargs to strip space
 
@@ -81,6 +81,11 @@ if [[ $(git diff --stat) != '' ]]; then
   echo 'Git working status is dirty already. Aborting'
   exit 1
 fi
+
+repo_name="$sample_service""$repo_suffix"
+echo "Validating that $input_version is present in repo $repo_name in all supported regions"
+source .github/workflows/check_images_x_region.sh
+checkImages $repo_name $input_version
 
 sed -i 's/'"$current_version"'/'"$input_version"'/g' $version_files
 

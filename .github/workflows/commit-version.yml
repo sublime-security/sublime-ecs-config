@@ -31,9 +31,24 @@ on:
 jobs:
   update-files:
     runs-on: ubuntu-20.04
+
+    environment: all
+    # These permissions are needed to interact with GitHub's OIDC Token endpoint.
+    permissions:
+      id-token: write
+      contents: write
+
     steps:
     - name: Check out repo
       uses: actions/checkout@v2
+
+    - name: Configure AWS credentials (Static Account)
+      uses: aws-actions/configure-aws-credentials@v1.6.0
+      with:
+        # Use a role instead of including credentials in secrets, and keep the role in secrets just for gating.
+        role-to-assume: ${{ secrets.ECR_REPO_ROLE }}
+        role-duration-seconds: 7200 # 2 hours
+        aws-region: us-east-1
 
     - name: Update files
       run: |
@@ -75,6 +90,13 @@ jobs:
 
           git commit $allow_empty_option -m "$commit_message"
           git push origin ${GITHUB_REF##*/}
+
+          # To help enable replacing 'master' with 'prod' we'll automatically keep them in sync till we can get rid of master.
+          if [ "${GITHUB_REF##*/}" == "master" ]; then
+            git push origin master:prod
+          elif [ "${GITHUB_REF##*/}" == "prod" ]; then
+            git push origin prod:master
+          fi
         else
           # Doesn't need to be a failure, but this was success means it actually did something.
           echo "Neither target included an actionable update. Failing"
