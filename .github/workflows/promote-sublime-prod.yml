@@ -1,0 +1,36 @@
+name: Promote Sublime Prod to All Prod
+
+on:
+  workflow_dispatch: { }
+
+
+jobs:
+  push-prod:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@v2
+
+    - name: Push to prod
+      run: |
+        if [ "${GITHUB_REF##*/}" != "sublime-prod" ]; then
+          echo "Workflow to promote sublime prod can only be run from sublime-prod branch. On ${GITHUB_REF##*/}"
+          exit 1
+        fi
+
+        # The default repo doesn't include the full history which will cause later rebasing to fail
+        git pull --unshallow origin sublime-prod
+
+        git fetch origin
+
+        # This will fail if the history gets out of sync at all, and will need to be fixed manualy.
+        # TBD how big of a deal this is (maybe just do a flag to allow forcing?)
+
+        git checkout master
+        git rebase sublime-prod
+        git push origin master
+
+        git checkout prod
+        git rebase sublime-prod
+        git push origin prod
