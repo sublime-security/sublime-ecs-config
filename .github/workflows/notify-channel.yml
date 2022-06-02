@@ -1,0 +1,22 @@
+name: Publish Slack Message on Release Commit
+
+on:
+  push:
+    branches:
+      - prod # Not including master because it and prod should *always* be synced (and we're moving towards prod)
+      - sublime-prod
+      - staging
+
+jobs:
+  update-files:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@v2
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_Z_RELEASE_LOG }}
+          SLACK_TITLE: go-mantis release (see branch)
