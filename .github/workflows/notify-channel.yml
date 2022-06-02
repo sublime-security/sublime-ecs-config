@@ -5,7 +5,6 @@ on:
     branches:
       - prod # Not including master because it and prod should *always* be synced (and we're moving towards prod)
       - sublime-prod
-      - staging
 
 jobs:
   update-files:
