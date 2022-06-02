@@ -15,8 +15,8 @@ jobs:
     - name: Check out repo
       uses: actions/checkout@v2
 
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_Z_RELEASE_LOG }}
-          SLACK_TITLE: go-mantis release (see branch)
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_Z_RELEASE_LOG }}
+        SLACK_TITLE: go-mantis release (see branch)
