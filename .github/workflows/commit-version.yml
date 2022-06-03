@@ -50,10 +50,6 @@ jobs:
         role-duration-seconds: 7200 # 2 hours
         aws-region: us-east-1
 
-    - name: Get the head ref (eg branch)
-      id: get_head
-      run: echo "##[set-output name=MESSAGE;]$(git log -1 --pretty=format:"%s")"
-
     - name: Update files
       run: |
         echo "platform_backend_version: ${{ github.event.inputs.platform_backend_version }}"
@@ -105,6 +101,11 @@ jobs:
           # Doesn't need to be a failure, but this was success means it actually did something.
           echo "Neither target included an actionable update. Failing"
         fi
+        
+
+    - name: Get the head ref (eg branch)
+      id: get_head
+      run: echo "##[set-output name=MESSAGE;]$(git log -1 --pretty=format:"%s")"
 
     # https://github.com/marketplace/actions/webhook-action is more flexible if needed
     - name: Invoke Deployment Notification Hook
