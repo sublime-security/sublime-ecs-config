@@ -101,3 +101,12 @@ jobs:
           # Doesn't need to be a failure, but this was success means it actually did something.
           echo "Neither target included an actionable update. Failing"
         fi
+
+    # https://github.com/marketplace/actions/webhook-action is more flexible if needed
+    - name: Invoke Deployment Notification Hook
+      uses: distributhor/workflow-webhook@v2
+      env:
+        webhook_type: 'json-extended'
+        webhook_url: ${{ secrets.PLATFORM_RELEASE_WEBHOOK }}
+        webhook_secret: "foobar"
+        data: '{ "is_promotion": "false" }'
