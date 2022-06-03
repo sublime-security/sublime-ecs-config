@@ -50,6 +50,10 @@ jobs:
         role-duration-seconds: 7200 # 2 hours
         aws-region: us-east-1
 
+    - name: Get the head ref (eg branch)
+      id: get_head
+      run: echo "##[set-output name=MESSAGE;]$(git log -1 --pretty=format:"%s")"
+
     - name: Update files
       run: |
         echo "platform_backend_version: ${{ github.event.inputs.platform_backend_version }}"
@@ -109,4 +113,4 @@ jobs:
         webhook_type: 'json-extended'
         webhook_url: ${{ secrets.PLATFORM_RELEASE_WEBHOOK }}
         webhook_secret: "foobar"
-        data: '{ "is_promotion": "false", "message": "${{ github.event.head_commit.message }}" }'
+        data: '{ "is_promotion": "false", "message": "${{ steps.get_head.outputs.MESSAGE }}" }'
