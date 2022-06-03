@@ -35,6 +35,10 @@ jobs:
         git rebase sublime-prod
         git push origin prod
 
+    - name: Get the head ref (eg branch)
+      id: get_head
+      run: echo "##[set-output name=MESSAGE;]$(git log -1 --pretty=format:"%s")"
+
       # https://github.com/marketplace/actions/webhook-action is more flexible if needed
     - name: Invoke Deployment Notification Hook
       uses: distributhor/workflow-webhook@v2
@@ -42,4 +46,4 @@ jobs:
         webhook_type: 'json-extended'
         webhook_url: ${{ secrets.PLATFORM_RELEASE_WEBHOOK }}
         webhook_secret: "foobar"
-        data: '{ "is_promotion": "true" }'
+        data: '{ "is_promotion": "true", "message": "${{ steps.get_head.outputs.MESSAGE }}" }'
