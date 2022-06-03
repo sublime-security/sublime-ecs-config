@@ -109,4 +109,4 @@ jobs:
         webhook_type: 'json-extended'
         webhook_url: ${{ secrets.PLATFORM_RELEASE_WEBHOOK }}
         webhook_secret: "foobar"
-        data: '{ "is_promotion": "false", "message": ${{ github.event.head_commit.message }} }'
+        data: '{ "is_promotion": "false", "message": "${{ github.event.head_commit.message }}" }'
