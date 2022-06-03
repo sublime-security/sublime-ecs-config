@@ -1,6 +1,6 @@
 [
     {
       "name": "dashboard",
-      "imageUri": "948971135452.dkr.ecr.us-west-2.amazonaws.com/dashboard-staging:0.27.7-rc.0"
+      "imageUri": "948971135452.dkr.ecr.us-west-2.amazonaws.com/dashboard-staging:0.27.10-rc.0"
     }
   ]
