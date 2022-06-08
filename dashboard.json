@@ -1,6 +1,6 @@
 [
     {
       "name": "dashboard",
-      "imageUri": "sublimesec/dashboard:0.27.10"
+      "imageUri": "sublimesec/dashboard:0.28.0"
     }
   ]
