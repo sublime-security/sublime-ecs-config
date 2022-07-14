@@ -19,6 +19,14 @@ on:
         description: 'Platform frontend: Omit for standard releases, "bounce" for a restart, "rollback" to move backwards'
         required: false
         default: ''
+      hydra_version:
+        description: 'Hydra version to use, if releasing.'
+        required: false
+        default: ''
+      hydra_release_type:
+        description: 'Hydra: Omit for standard releases, "bounce" for a restart, "rollback" to move backwards'
+        required: false
+        default: ''
       strelka_version:
         description: 'Strelka version to use, if releasing.'
         required: false
@@ -56,6 +64,8 @@ jobs:
         echo "platform_backend_release_type: ${{ github.event.inputs.platform_backend_release_type }}"
         echo "platform_frontend_version: ${{ github.event.inputs.platform_frontend_version }}"
         echo "platform_frontend_release_type: ${{ github.event.inputs.platform_frontend_release_type }}"
+        echo "hydra_version: ${{ github.event.inputs.hydra_version }}"
+        echo "hydra_release_type: ${{ github.event.inputs.hydra_release_type }}"
         echo "strelka_version: ${{ github.event.inputs.strelka_version }}"
         echo "strelka_release_type: ${{ github.event.inputs.strelka_release_type }}"
         echo "Branch: "${GITHUB_REF##*/}
@@ -76,6 +86,11 @@ jobs:
 
         if [ "${{ github.event.inputs.strelka_version }}" != "" ]; then
           .github/workflows/validate_and_update_service.sh "Strelka" "strelka-eu-west-1.json" "strelka-backend" "18" "strelka*.json" "${{ github.event.inputs.strelka_version }}" "${{ github.event.inputs.strelka_release_type }}"
+          should_update="true"
+        fi
+
+        if [ "${{ github.event.inputs.hydra_version }}" != "" ]; then
+          .github/workflows/validate_and_update_service.sh "Hydra" "hydra-eu-west-1.json" "hydra" "6" "hydra*.json" "${{ github.event.inputs.hydra_version }}" "${{ github.event.inputs.hydra_release_type }}"
           should_update="true"
         fi
 
