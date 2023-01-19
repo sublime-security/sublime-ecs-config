@@ -52,6 +52,16 @@ jobs:
 
     - name: Configure AWS credentials (Static Account)
       uses: aws-actions/configure-aws-credentials@v1.6.0
+      continue-on-error: true
+      with:
+        # Use a role instead of including credentials in secrets, and keep the role in secrets just for gating.
+        role-to-assume: ${{ secrets.ECR_REPO_ROLE }}
+        role-duration-seconds: 7200 # 2 hours
+        aws-region: us-east-1
+
+    - name: 2nd Attempt Configure AWS credentials (Static Account)
+      uses: aws-actions/configure-aws-credentials@v1.6.0
+      if: ${{ env.AWS_ACCESS_KEY_ID == '' }}
       with:
         # Use a role instead of including credentials in secrets, and keep the role in secrets just for gating.
         role-to-assume: ${{ secrets.ECR_REPO_ROLE }}
