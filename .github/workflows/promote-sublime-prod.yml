@@ -27,10 +27,6 @@ jobs:
         # This will fail if the history gets out of sync at all, and will need to be fixed manualy.
         # TBD how big of a deal this is (maybe just do a flag to allow forcing?)
 
-        git checkout master
-        git rebase sublime-prod
-        git push origin master
-
         git checkout prod
         git rebase sublime-prod
         git push origin prod

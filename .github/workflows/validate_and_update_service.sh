@@ -23,7 +23,7 @@ inspectSampleFileExp='.*'"$sample_service"'\(.[A-Za-z]*\)\?:\('"$semver_regexp"'
 repo_suffix=$(sed -n 's/'"$inspectSampleFileExp"'/\1/p' $sample_file)
 current_version=$(sed -n 's/'"$inspectSampleFileExp"'/\2/p' $sample_file)
 
-current_version_count=$(grep -roh "$current_version" $version_files | wc -l | xargs) #xargs to strip space
+current_version_count=$(grep -rohF "$current_version" $version_files | wc -l | xargs) #xargs to strip space
 
 if [ "$current_version_count" == "$instance_count" ]; then
   echo "$name currently at version $current_version ($current_version_count eligible instances)"
