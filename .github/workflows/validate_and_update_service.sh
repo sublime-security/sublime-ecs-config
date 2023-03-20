@@ -87,7 +87,8 @@ echo "Validating that $input_version is present in repo $repo_name in all suppor
 source .github/workflows/check_images_x_region.sh
 checkImages $repo_name $input_version
 
-sed -i 's/'"$current_version"'/'"$input_version"'/g' $version_files
+escaped_current_version=$(printf '%s\n' "$current_version" | sed -e 's/[\.]/\\./g')
+sed -i 's/'"$escaped_current_version"'/'"$input_version"'/g' $version_files
 
 changed_files=$(git diff -U0 | grep '^[+-] ' | wc -l | xargs)
 changes=$(( $changed_files / 2))
