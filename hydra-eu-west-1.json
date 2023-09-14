@@ -1,7 +1,7 @@
 [
     {
       "name": "hydra",
-      "imageUri": "948971135452.dkr.ecr.eu-west-1.amazonaws.com/hydra:1.0.35"
+      "imageUri": "948971135452.dkr.ecr.eu-west-1.amazonaws.com/hydra:1.0.36"
     },
     {
       "name": "datadog",
