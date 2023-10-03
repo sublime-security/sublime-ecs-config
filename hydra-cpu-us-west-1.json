@@ -2,9 +2,5 @@
     {
       "name": "hydra-cpu",
       "imageUri": "948971135452.dkr.ecr.us-west-1.amazonaws.com/hydra-cpu-staging:1.0.37-rc.0"
-    },
-    {
-      "name": "datadog",
-      "imageUri": "datadog/agent:7.39.2-jmx"
     }
 ]
