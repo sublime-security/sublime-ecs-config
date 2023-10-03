@@ -2,9 +2,5 @@
     {
       "name": "hydra",
       "imageUri": "948971135452.dkr.ecr.us-west-1.amazonaws.com/hydra:1.0.37"
-    },
-    {
-      "name": "datadog",
-      "imageUri": "datadog/agent:7.39.2-jmx"
     }
 ]
