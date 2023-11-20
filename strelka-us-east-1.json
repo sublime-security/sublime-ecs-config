@@ -10,9 +10,5 @@
   {
     "name": "manager",
     "imageUri": "948971135452.dkr.ecr.us-east-1.amazonaws.com/strelka-manager:0.3.53"
-  },
-  {
-    "name": "coordinator",
-    "imageUri": "redis:7.2.3-alpine"
   }
 ]
