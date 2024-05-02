@@ -1,6 +1,6 @@
 [
     {
       "name": "mantis",
-      "imageUri": "948971135452.dkr.ecr.eu-west-2.amazonaws.com/mantis-staging:1.39.17-rc.0"
+      "imageUri": "948971135452.dkr.ecr.eu-west-2.amazonaws.com/mantis-staging:1.39.18-rc.0"
     }
   ]
