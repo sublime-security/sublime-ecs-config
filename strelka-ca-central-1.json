@@ -1,14 +1,14 @@
 [
   {
     "name": "backend",
-    "imageUri": "948971135452.dkr.ecr.ca-central-1.amazonaws.com/strelka-backend:0.3.56"
+    "imageUri": "948971135452.dkr.ecr.ca-central-1.amazonaws.com/strelka-backend:0.3.62"
   },
   {
     "name": "frontend",
-    "imageUri": "948971135452.dkr.ecr.ca-central-1.amazonaws.com/strelka-frontend:0.3.56"
+    "imageUri": "948971135452.dkr.ecr.ca-central-1.amazonaws.com/strelka-frontend:0.3.62"
   },
   {
     "name": "manager",
-    "imageUri": "948971135452.dkr.ecr.ca-central-1.amazonaws.com/strelka-manager:0.3.56"
+    "imageUri": "948971135452.dkr.ecr.ca-central-1.amazonaws.com/strelka-manager:0.3.62"
   }
 ]
