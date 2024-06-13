@@ -1,6 +1,6 @@
 [
     {
       "name": "hydra",
-      "imageUri": "948971135452.dkr.ecr.ap-southeast-2.amazonaws.com/hydra-staging:1.0.87-rc.0"
+      "imageUri": "948971135452.dkr.ecr.ap-southeast-2.amazonaws.com/hydra-staging:1.0.88-rc.0"
     }
 ]
