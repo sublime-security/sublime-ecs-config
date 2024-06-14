@@ -1,6 +1,6 @@
 [
     {
       "name": "hydra-cpu",
-      "imageUri": "106524781139.dkr.ecr.us-gov-west-1.amazonaws.com/hydra-cpu:1.0.88"
+      "imageUri": "106524781139.dkr.ecr.us-gov-west-1.amazonaws.com/hydra-cpu:1.0.89"
     }
 ]
