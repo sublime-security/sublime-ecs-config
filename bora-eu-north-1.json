@@ -1,6 +1,6 @@
 [
     {
       "name": "bora",
-      "imageUri": "948971135452.dkr.ecr.eu-north-1.amazonaws.com/bora-lite-staging:1.45.0-rc.0"
+      "imageUri": "948971135452.dkr.ecr.eu-north-1.amazonaws.com/bora-lite-staging:1.45.1-rc.0"
     }
   ]
