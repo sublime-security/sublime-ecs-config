@@ -1,6 +1,6 @@
 [
     {
       "name": "mantis",
-      "imageUri": "sublimesec/mantis:1.45.39"
+      "imageUri": "sublimesec/mantis:1.45.40"
     }
   ]
