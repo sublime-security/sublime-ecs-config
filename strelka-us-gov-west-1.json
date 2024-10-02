@@ -1,14 +1,14 @@
 [
   {
     "name": "backend",
-    "imageUri": "106524781139.dkr.ecr.us-gov-west-1.amazonaws.com/strelka-backend:0.3.62"
+    "imageUri": "106524781139.dkr.ecr.us-gov-west-1.amazonaws.com/strelka-backend:0.3.64"
   },
   {
     "name": "frontend",
-    "imageUri": "106524781139.dkr.ecr.us-gov-west-1.amazonaws.com/strelka-frontend:0.3.62"
+    "imageUri": "106524781139.dkr.ecr.us-gov-west-1.amazonaws.com/strelka-frontend:0.3.64"
   },
   {
     "name": "manager",
-    "imageUri": "106524781139.dkr.ecr.us-gov-west-1.amazonaws.com/strelka-manager:0.3.62"
+    "imageUri": "106524781139.dkr.ecr.us-gov-west-1.amazonaws.com/strelka-manager:0.3.64"
   }
 ]
