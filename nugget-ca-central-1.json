@@ -1,6 +1,6 @@
 [
     {
       "name": "nugget",
-      "imageUri": "948971135452.dkr.ecr.ca-central-1.amazonaws.com/nugget-staging:1.46.66-rc.1"
+      "imageUri": "948971135452.dkr.ecr.ca-central-1.amazonaws.com/nugget-staging:1.46.67-rc.0"
     }
   ]
