@@ -1,6 +1,6 @@
 [
     {
       "name": "nugget",
-      "imageUri": "sublimesec/nugget:1.46.68-rc.0"
+      "imageUri": "sublimesec/nugget:1.47.0-rc.0"
     }
   ]
