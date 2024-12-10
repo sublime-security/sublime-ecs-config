@@ -1,6 +1,6 @@
 [
   {
     "name": "screenshots",
-    "imageUri": "948971135452.dkr.ecr.us-west-2.amazonaws.com/strelka-backend:0.2.10"
+    "imageUri": "sublimesec/render-email-html:0.2.10"
   },
 ]
