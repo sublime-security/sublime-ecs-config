@@ -1,6 +1,6 @@
 [
     {
       "name": "click-tracking",
-      "imageUri": "sublimesec/click-tracking:1.80.23"
+      "imageUri": "sublimesec/click-tracking:1.81.4-rc.0"
     }
   ]
