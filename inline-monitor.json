@@ -1,6 +1,6 @@
 [
     {
         "name": "inline-monitor",
-        "imageUri": "sublimesec/nugget:1.84.305"
+        "imageUri": "sublimesec/nugget:1.84.306"
     }
 ]
