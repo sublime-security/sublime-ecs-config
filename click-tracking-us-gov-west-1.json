@@ -1,6 +1,6 @@
 [
     {
       "name": "click-tracking",
-      "imageUri": "106524781139.dkr.ecr.us-gov-west-1.amazonaws.com/click-tracking-staging:1.88.161-rc.0"
+      "imageUri": "106524781139.dkr.ecr.us-gov-west-1.amazonaws.com/click-tracking-staging:1.88.162-rc.1"
     }
   ]
