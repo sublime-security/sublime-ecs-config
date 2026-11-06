@@ -1,6 +1,6 @@
 [
     {
       "name": "inline-monitor",
-      "imageUri": "948971135452.dkr.ecr.eu-west-3.amazonaws.com/nugget-staging:1.90.190-rc.2"
+      "imageUri": "948971135452.dkr.ecr.eu-west-3.amazonaws.com/nugget-staging:1.90.191-rc.0"
     }
   ]
